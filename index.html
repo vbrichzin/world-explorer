@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Explorer - Interactive World Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            background: #f8fafc; 
+            overflow-x: hidden; 
+        }
+        
+        #header { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 2rem; text-align: center;
+            box-shadow: 0 4px 20px rgba(102,126,234,0.3);
+        }
+        
+        #header h1 { 
+            font-size: 2.5rem; margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        #header p { 
+            opacity: 0.9; font-size: 1.1rem;
+        }
+        
+        #container { 
+            max-width: 1600px; margin: 2rem auto; padding: 0 1rem; 
+            position: relative; min-height: 70vh;
+        }
+        
+        .search-box { 
+            position: absolute; top: -4.5rem; left: 2rem; z-index: 1000;
+            background: white; border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15); padding: 1rem; 
+            width: 300px; display: flex; gap: 0.5rem;
+        }
+        
+        .search-box input { 
+            flex: 1; border: 2px solid #e2e8f0; border-radius: 8px; 
+            padding: 0.75rem; font-size: 0.95rem; outline: none; transition: border-color 0.3s;
+        }
+        
+        .search-box input:focus { 
+            border-color: #2563eb; 
+        }
+        
+        .search-btn { 
+            background: #2563eb; color: white; border: none; 
+            border-radius: 8px; padding: 0.75rem 1rem; cursor: pointer; 
+            font-size: 1rem; transition: background-color 0.3s;
+        }
+        
+        .search-btn:hover { 
+            background: #1d4ed8; 
+        }
+        
+        #map { 
+            height: 80vh; width: 100%; border-radius: 16px; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12); background: #e8f4f8;
+        }
+        
+        .info-panel {
+            position: absolute; top: -4.5rem; right: 2rem; z-index: 1000;
+            width: 380px; 
+            background: white; border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15); 
+            padding: 1.5rem; overflow-y: auto; max-height: calc(80vh - 2rem);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .info-panel.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+        
+        .info-panel h2 { 
+            color: #2563eb; font-size: 1.5rem; margin-bottom: 1rem; 
+            border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem;
+        }
+        
+        .country-grid { display: grid; gap: 0.75rem; }
+        
+        .info-item { 
+            padding: 0.75rem; background: #f8fafc; border-radius: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: background-color 0.2s;
+        }
+        
+        .info-item:hover { 
+            background: #e2e8f0;
+        }
+        
+        .info-item .label { 
+            color: #64748b; font-size: 0.8rem; text-transform: uppercase; 
+            letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.5rem;
+        }
+        
+        .info-item .value { 
+            color: #1e293b; font-size: 0.95rem; font-weight: 600; text-align: right;
+        }
+        
+        .close-btn { 
+            position: absolute; top: 1rem; right: 1rem; width: 30px; height: 30px; 
+            border-radius: 50%; background: #f8fafc; border: none; cursor: pointer; 
+            font-size: 1.2rem; color: #64748b; transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        
+        .close-btn:hover { 
+            background: #e2e8f0; transform: rotate(90deg);
+        }
+        
+        .zoom-hint { 
+            position: absolute; bottom: 2rem; left: 2rem; z-index: 1000; 
+            background: white; border-radius: 12px; padding: 1rem; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); font-size: 0.85rem; 
+            color: #64748b;
+        }
+        
+        .loading-overlay { 
+            position: fixed; inset: 0; background: #f8fafc; 
+            display: flex; align-items: center; justify-content: center; 
+            z-index: 9999; transition: opacity 0.5s;
+        }
+        
+        .loading-dots { display: flex; gap: 0.5rem; }
+        
+        .loading-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: #667eea; animation: pulse 1.4s infinite ease-in-out;
+        }
+        
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes pulse {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        
+        .country-path { 
+            stroke: white; stroke-width: 0.8; cursor: pointer; transition: all 0.3s;
+        }
+        
+        .country-path:hover { 
+            stroke-width: 2.5; 
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .info-panel { right: 1rem; width: calc(100% - 2rem); top: -4.5rem; }
+            #header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>&#x1F30D; World Explorer</h1>
+        <p>Click on any country to explore its capital, population and more</p>
+    </div>
+    
+    <div id="container">
+        <div class="search-box">
+            <input type="text" id="searchBox" placeholder="Search countries...">
+            <button class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div id="map"></div>
+        
+        <div class="info-panel hidden" id="infoPanel">
+            <button class="close-btn" onclick="hideInfo()">&times;</button>
+            <h2 id="countryName">Country Name</h2>
+            <div class="country-grid">
+                <div class="info-item">
+                    <span class="label">&#x1F3E0; Capital City</span>
+                    <span class="value" id="capital">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">&#x1F465; Population</span>
+                    <span class="value" id="population">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">&#x1F30D; Continent</span>
+                    <span class="value" id="continent">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">&#x1F4CF; Area (km²)</span>
+                    <span class="value" id="area">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">&#x1F4B0; Currency</span>
+                    <span class="value" id="currency">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">&#x1F4BA; GDP (Billion USD)</span>
+                    <span class="value" id="gdp">-</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="zoom-hint">
+            <i class="fas fa-search"></i> Scroll to zoom<br>Click country for details
+        </div>
+    </div>
+
+    <div id="loading" class="loading-overlay">
+        <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

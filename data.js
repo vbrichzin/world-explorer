@@ -1,0 +1,68 @@
+// Country database for World Explorer
+const countryDatabase = {
+    "Afghanistan": {"capital": "Kabul", "population": 38928346, "flag": "\ud83c\udde6\ud83c\uddeb", "code": "AFG", "continent": "Asia", "areaKm2": 652230, "currency": "Afghani (AFN)", "gdpBillionUsd": 2.6},
+    "Albania": {"capital": "Tirana", "population": 2877798, "flag": "\ud83c\udde6\ud83c\uddf1", "code": "ALB", "continent": "Europe", "areaKm2": 28748, "currency": "Lek (ALL)", "gdpBillionUsd": 16.38},
+    "Algeria": {"capital": "Algiers", "population": 43851044, "flag": "\ud83c\udde9\ud83c\uddff", "code": "DZA", "continent": "Africa", "areaKm2": 2381741, "currency": "Dinar (DZD)", "gdpBillionUsd": 174.0},
+    "Argentina": {"capital": "Buenos Aires", "population": 45376763, "flag": "\ud83c\udde6\ud83c\uddf7", "code": "ARG", "continent": "South America", "areaKm2": 2780400, "currency": "Peso (ARS)", "gdpBillionUsd": 419.1},
+    "Australia": {"capital": "Canberra", "population": 25790000, "flag": "\ud83c\udde6\ud83c\uddfa", "code": "AUS", "continent": "Oceania", "areaKm2": 7692024, "currency": "Dollar (AUD)", "gdpBillionUsd": 1.32},
+    "Austria": {"capital": "Vienna", "population": 90447, "flag": "\ud83c\udde6\ud83c\uddf9", "code": "AUT", "continent": "Europe", "areaKm2": 83871, "currency": "Euro (EUR)", "gdpBillionUsd": 4.0},
+    "Bangladesh": {"capital": "Dhaka", "population": 164738530, "flag": "\ud83c\udde7\ud83c\udde9", "code": "BGD", "continent": "Asia", "areaKm2": 147570, "currency": "Taka (BDT)", "gdpBillionUsd": 329.8},
+    "Belgium": {"capital": "Brussels", "population": 11563002, "flag": "\ud83c\udde7\ud83c\uddea", "code": "BEL", "continent": "Europe", "areaKm2": 30528, "currency": "Euro (EUR)", "gdpBillionUsd": 578.1},
+    "Brazil": {"capital": "Brasilia", "population": 212648300, "flag": "\ud83c\udde7\ud83c\uddf7", "code": "BRA", "continent": "South America", "areaKm2": 8515767, "currency": "Real (BRL)", "gdpBillionUsd": 1.63},
+    "Bulgaria": {"capital": "Sofia", "population": 6948445, "flag": "\ud83c\udde7\ud83c\uddec", "code": "BGR", "continent": "Europe", "areaKm2": 110994, "currency": "Lev (BGN)", "gdpBillionUsd": 63.0},
+    "Canada": {"capital": "Ottawa", "population": 38910000, "flag": "\ud83c\udde8\ud83c\udde6", "code": "CAN", "continent": "North America", "areaKm2": 9984670, "currency": "Dollar (CAD)", "gdpBillionUsd": 1.63},
+    "China": {"capital": "Beijing", "population": 1439323000, "flag": "\ud83c\udde8\ud83c\uddf3", "code": "CHN", "continent": "Asia", "areaKm2": 9596960, "currency": "Yuan (CNY)", "gdpBillionUsd": 17.96},
+    "Colombia": {"capital": "Bogota", "population": 51020000, "flag": "\ud83c\udde8\ud83c\uddf4", "code": "COL", "continent": "South America", "areaKm2": 1141748, "currency": "Peso (COP)", "gdpBillionUsd": 313.7},
+    "Denmark": {"capital": "Copenhagen", "population": 5816705, "flag": "\ud83c\udde9\ud83c\uddf0", "code": "DNK", "continent": "Europe", "areaKm2": 43094, "currency": "Krone (DKK)", "gdpBillionUsd": 375.2},
+    "Egypt": {"capital": "Cairo", "population": 102334404, "flag": "\ud83c\uddea\ud83c\uddec", "code": "EGY", "continent": "Africa", "areaKm2": 1002450, "currency": "Pound (EGP)", "gdpBillionUsd": 368.4},
+    "Ethiopia": {"capital": "Addis Ababa", "population": 1150000000.0, "flag": "\ud83c\uddea\ud83c\uddf9", "code": "ETH", "continent": "Africa", "areaKm2": 1104300, "currency": "Birr (ETB)", "gdpBillionUsd": 91.2},
+    "Finland": {"capital": "Helsinki", "population": 5540720, "flag": "\ud83c\uddeb\ud83c\uddee", "code": "FIN", "continent": "Europe", "areaKm2": 338424, "currency": "Euro (EUR)", "gdpBillionUsd": 297.6},
+    "France": {"capital": "Paris", "population": 65270000, "flag": "\ud83c\uddeb\ud83c\uddf7", "code": "FRA", "continent": "Europe", "areaKm2": 640679, "currency": "Euro (EUR)", "gdpBillionUsd": 2.78},
+    "Germany": {"capital": "Berlin", "population": 83240000, "flag": "\ud83c\udde9\ud83c\uddea", "code": "DEU", "continent": "Europe", "areaKm2": 357022, "currency": "Euro (EUR)", "gdpBillionUsd": 3.85},
+    "Greece": {"capital": "Athens", "population": 10678000, "flag": "\ud83c\uddec\ud83c\uddf7", "code": "GRC", "continent": "Europe", "areaKm2": 131957, "currency": "Euro (EUR)", "gdpBillionUsd": 24.3},
+    "Hungary": {"capital": "Budapest", "population": 9660351, "flag": "\ud83c\udded\ud83c\uddfa", "code": "HUN", "continent": "Europe", "areaKm2": 93028, "currency": "Forint (HUF)", "gdpBillionUsd": 59.4},
+    "India": {"capital": "New Delhi", "population": 1380004000, "flag": "\ud83c\uddee\ud83c\uddf3", "code": "IND", "continent": "Asia", "areaKm2": 3287263, "currency": "Rupee (INR)", "gdpBillionUsd": 2.87},
+    "Indonesia": {"capital": "Jakarta", "population": 273523615, "flag": "\ud83c\uddee\ud83c\udde9", "code": "IDN", "continent": "Asia", "areaKm2": 1904569, "currency": "Rupiah (IDR)", "gdpBillionUsd": 1.12},
+    "Iran": {"capital": "Tehran", "population": 84923310, "flag": "\ud83c\uddee\ud83c\uddf7", "code": "IRN", "continent": "Asia", "areaKm2": 1648195, "currency": "Rial (IRR)", "gdpBillionUsd": 4.1},
+    "Iraq": {"capital": "Baghdad", "population": 40226190, "flag": "\ud83c\uddee\ud83c\uddf6", "code": "IRQ", "continent": "Asia", "areaKm2": 438317, "currency": "Dinar (IQD)", "gdpBillionUsd": 17.2},
+    "Ireland": {"capital": "Dublin", "population": 4937786, "flag": "\ud83c\uddee\ud83c\uddea", "code": "IRL", "continent": "Europe", "areaKm2": 70273, "currency": "Euro (EUR)", "gdpBillionUsd": 365.9},
+    "Italy": {"capital": "Rome", "population": 60460000, "flag": "\ud83c\uddee\ud83c\uddf9", "code": "ITA", "continent": "Europe", "areaKm2": 301340, "currency": "Euro (EUR)", "gdpBillionUsd": 2.09},
+    "Japan": {"capital": "Tokyo", "population": 125900000, "flag": "\ud83c\uddef\ud83c\uddf5", "code": "JPN", "continent": "Asia", "areaKm2": 377975, "currency": "Yen (JPY)", "gdpBillionUsd": 4.95},
+    "Kenya": {"capital": "Nairobi", "population": 53771300, "flag": "\ud83c\uddf0\ud83c\uddea", "code": "KEN", "continent": "Africa", "areaKm2": 580367, "currency": "Shilling (KES)", "gdpBillionUsd": 106.4},
+    "Malaysia": {"capital": "Kuala Lumpur", "population": 32365999, "flag": "\ud83c\uddf2\ud83c\uddfe", "code": "MYS", "continent": "Asia", "areaKm2": 330803, "currency": "Ringgit (MYR)", "gdpBillionUsd": 371.4},
+    "Mexico": {"capital": "Mexico City", "population": 128932753, "flag": "\ud83c\uddf2\ud83c\uddfd", "code": "MEX", "continent": "North America", "areaKm2": 1964375, "currency": "Peso (MXN)", "gdpBillionUsd": 1.08},
+    "Netherlands": {"capital": "Amsterdam", "population": 17441166, "flag": "\ud83c\uddf3\ud83c\uddf1", "code": "NLD", "continent": "Europe", "areaKm2": 41543, "currency": "Euro (EUR)", "gdpBillionUsd": 913.9},
+    "New Zealand": {"capital": "Wellington", "population": 4822000, "flag": "\ud83c\uddf3\ud83c\uddff", "code": "NZL", "continent": "Oceania", "areaKm2": 270467, "currency": "Dollar (NZD)", "gdpBillionUsd": 247.1},
+    "Nigeria": {"capital": "Abuja", "population": 206139589, "flag": "\ud83c\uddf3\ud83c\uddec", "code": "NGA", "continent": "Africa", "areaKm2": 923768, "currency": "Naira (NGN)", "gdpBillionUsd": 432.2},
+    "Norway": {"capital": "Oslo", "population": 5408014, "flag": "\ud83c\uddf3\ud83c\uddf4", "code": "NOR", "continent": "Europe", "areaKm2": 385207, "currency": "Krone (NOK)", "gdpBillionUsd": 389.6},
+    "Pakistan": {"capital": "Islamabad", "population": 220892340, "flag": "\ud83c\uddf5\ud83c\uddf0", "code": "PAK", "continent": "Asia", "areaKm2": 796095, "currency": "Rupee (PKR)", "gdpBillionUsd": 71.7},
+    "Peru": {"capital": "Lima", "population": 32971000, "flag": "\ud83c\uddf5\ud83c\uddea", "code": "PER", "continent": "South America", "areaKm2": 1285216, "currency": "Sol (PEN)", "gdpBillionUsd": 242.6},
+    "Philippines": {"capital": "Manila", "population": 109581078, "flag": "\ud83c\uddf5\ud83c\udded", "code": "PHL", "continent": "Asia", "areaKm2": 300000, "currency": "Peso (PHP)", "gdpBillionUsd": 365.3},
+    "Poland": {"capital": "Warsaw", "population": 37747000, "flag": "\ud83c\uddf5\ud83c\uddf1", "code": "POL", "continent": "Europe", "areaKm2": 312696, "currency": "Zloty (PLN)", "gdpBillionUsd": 59.6},
+    "Portugal": {"capital": "Lisbon", "population": 10167483, "flag": "\ud83c\uddf5\ud83c\uddf9", "code": "PRT", "continent": "Europe", "areaKm2": 92212, "currency": "Euro (EUR)", "gdpBillionUsd": 22.3},
+    "Romania": {"capital": "Bucharest", "population": 19237691, "flag": "\ud83c\uddf7\ud83c\uddf4", "code": "ROU", "continent": "Europe", "areaKm2": 238391, "currency": "Leu (RON)", "gdpBillionUsd": 250.4},
+    "Russia": {"capital": "Moscow", "population": 145910000, "flag": "\ud83c\uddf7\ud83c\uddfa", "code": "RUS", "continent": "Europe/Asia", "areaKm2": 17098246, "currency": "Ruble (RUB)", "gdpBillionUsd": 1.78},
+    "Saudi Arabia": {"capital": "Riyadh", "population": 34918825, "flag": "\ud83c\uddf8\ud83c\udde6", "code": "SAU", "continent": "Asia", "areaKm2": 2149690, "currency": "Riyal (SAR)", "gdpBillionUsd": 793.5},
+    "Serbia": {"capital": "Belgrade", "population": 6908225, "flag": "\ud83c\uddf7\ud83c\uddf8", "code": "SRB", "continent": "Europe", "areaKm2": 77474, "currency": "Dinar (RSD)", "gdpBillionUsd": 52.3},
+    "Singapore": {"capital": "Singapore", "population": 5850000, "flag": "\ud83c\uddf8\ud83c\uddec", "code": "SGP", "continent": "Asia", "areaKm2": 733, "currency": "Dollar (SGD)", "gdpBillionUsd": 372.0},
+    "South Africa": {"capital": "Pretoria", "population": 59308690, "flag": "\ud83c\uddff\ud83c\udde6", "code": "ZAF", "continent": "Africa", "areaKm2": 1219090, "currency": "Rand (ZAR)", "gdpBillionUsd": 371.3},
+    "South Korea": {"capital": "Seoul", "population": 51823935, "flag": "\ud83c\uddf0\ud83c\uddf7", "code": "KOR", "continent": "Asia", "areaKm2": 100210, "currency": "Won (KRW)", "gdpBillionUsd": 59.6},
+    "Spain": {"capital": "Madrid", "population": 46754778, "flag": "\ud83c\uddea\ud83c\uddf8", "code": "ESP", "continent": "Europe", "areaKm2": 505990, "currency": "Euro (EUR)", "gdpBillionUsd": 1.39},
+    "Sweden": {"capital": "Stockholm", "population": 10353442, "flag": "\ud83c\uddf8\ud83c\uddea", "code": "SWE", "continent": "Europe", "areaKm2": 450295, "currency": "Krona (SEK)", "gdpBillionUsd": 627.4},
+    "Switzerland": {"capital": "Bern", "population": 8654820, "flag": "\ud83c\udde8\ud83c\udded", "code": "CHE", "continent": "Europe", "areaKm2": 41285, "currency": "Franc (CHF)", "gdpBillionUsd": 759.0},
+    "Thailand": {"capital": "Bangkok", "population": 69800000, "flag": "\ud83c\uddf9\ud83c\udded", "code": "THA", "continent": "Asia", "areaKm2": 513120, "currency": "Baht (THB)", "gdpBillionUsd": 474.5},
+    "Turkey": {"capital": "Ankara", "population": 84339067, "flag": "\ud83c\uddf9\ud83c\uddf7", "code": "TUR", "continent": "Europe/Asia", "areaKm2": 783562, "currency": "Lira (TRY)", "gdpBillionUsd": 71000000.0},
+    "Ukraine": {"capital": "Kyiv", "population": 44134693, "flag": "\ud83c\uddfa\ud83c\udde6", "code": "UKR", "continent": "Europe", "areaKm2": 603700, "currency": "Hryvnia (UAH)", "gdpBillionUsd": 1.52},
+    "United Kingdom": {"capital": "London", "population": 67350000, "flag": "\ud83c\uddec\ud83c\udde7", "code": "GBR", "continent": "Europe", "areaKm2": 242495, "currency": "Pound (GBP)", "gdpBillionUsd": 2.89},
+    "United States of America": {"capital": "Washington, D.C.", "population": 331900000, "flag": "\ud83c\uddfa\ud83c\uddf8", "code": "USA", "continent": "North America", "areaKm2": 9833520, "currency": "Dollar (USD)", "gdpBillionUsd": 23.32},
+    "Vietnam": {"capital": "Hanoi", "population": 97338579, "flag": "\ud83c\uddfb\ud83c\uddf3", "code": "VNM", "continent": "Asia", "areaKm2": 331210, "currency": "Dong (VND)", "gdpBillionUsd": 261.8},
+};
+
+// Helper to format numbers
+function formatNumber(num) {
+    if (typeof num !== "number" || isNaN(num)) return "-";
+    if (num >= 1e9) return (num / 1e9).toFixed(2) + " billion";
+    if (num >= 1e6) return (num / 1e6).toFixed(2) + " million";
+    if (num >= 1e3) return (num / 1e3).toFixed(0) + " thousand";
+    return num.toLocaleString();
+}
