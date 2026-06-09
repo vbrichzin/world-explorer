@@ -31,9 +31,9 @@ function showCountryInfo(feature) {
     document.getElementById('capital').textContent = data.capital || '-';
     document.getElementById('population').textContent = formatNumber(data.population);
     document.getElementById('continent').textContent = data.continent || '-';
-    document.getElementById('area').textContent = formatArea(data.area_km2) + 'M';
+    document.getElementById('area').textContent = formatArea(data.areaKm2) + 'M';
     document.getElementById('currency').textContent = data.currency || '-';
-    const gdp = data.gdp_billion_usd;
+    const gdp = data.gdpBillionUsd;
     document.getElementById('gdp').textContent = gdp ? '$' + Number.parseFloat(gdp).toFixed(1) + 'B' : '-';
     
     document.getElementById('infoPanel').style.display = 'block';
